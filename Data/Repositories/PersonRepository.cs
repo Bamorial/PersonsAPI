@@ -16,8 +16,6 @@ public class PersonRepository : IPersonRepository
             p.Id AS PersonId,
             p.Email,
             pr.Name,
-            pr.Age,
-            pr.Company
         FROM Person p
         INNER JOIN Profile pr ON pr.Id = p.ProfileId;
     ";
@@ -35,11 +33,10 @@ public class PersonRepository : IPersonRepository
                     {
                         Id = Convert.ToInt32(reader["PersonId"]),
                         Email = reader["Email"].ToString(),
-                        Profile = new Profile
+                        Profile = new Company
                         {
+                            Id=Convert.ToInt32(reader["Id"]),
                             Name = reader["Name"].ToString(),
-                            Age = Convert.ToInt32(reader["Age"]),
-                            Company = reader["Company"].ToString()
                         }
                     };
                     persons.Add(person);
@@ -56,8 +53,6 @@ public class PersonRepository : IPersonRepository
             p.Id AS PersonId,
             p.Email,
             pr.Name,
-            pr.Age,
-            pr.Company
         FROM Person p
         INNER JOIN Profile pr ON pr.Id = p.ProfileId
         WHERE p.Id=@Id;
@@ -77,11 +72,10 @@ public class PersonRepository : IPersonRepository
                     {
                         Id = Convert.ToInt32(reader["PersonId"]),
                         Email = reader["Email"].ToString(),
-                        Profile = new Profile
+                        Profile = new Company
                         {
                             Name = reader["Name"].ToString(),
-                            Age = Convert.ToInt32(reader["Age"]),
-                            Company = reader["Company"].ToString()
+                            Id = Convert.ToInt32(reader["Id"]),
                         }
                     };
                     persons.Add(person);
@@ -108,8 +102,7 @@ public class PersonRepository : IPersonRepository
             conn.Open();
 
             cmdProfile.Parameters.AddWithValue("@Name", person.Profile.Name);
-            cmdProfile.Parameters.AddWithValue("@Age", person.Profile.Age);
-            cmdProfile.Parameters.AddWithValue("@Company", person.Profile.Company);
+            cmdProfile.Parameters.AddWithValue("@Id", person.Profile.Id);
 
             int profileId;
             using (var reader = cmdProfile.ExecuteReader())
@@ -149,8 +142,7 @@ public class PersonRepository : IPersonRepository
             using (MySqlCommand cmdProfile = new MySqlCommand(updateProfileQuery, conn))
             {
                 cmdProfile.Parameters.AddWithValue("@Name", updatedPerson.Profile.Name);
-                cmdProfile.Parameters.AddWithValue("@Age", updatedPerson.Profile.Age);
-                cmdProfile.Parameters.AddWithValue("@Company", updatedPerson.Profile.Company);
+                cmdProfile.Parameters.AddWithValue("@Id", updatedPerson.Profile.Id);
                 cmdProfile.Parameters.AddWithValue("@PersonId", id);
                 cmdProfile.ExecuteNonQuery();
             }

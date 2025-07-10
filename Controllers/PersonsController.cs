@@ -20,7 +20,7 @@ namespace PersonsApi.Controllers
         {
             Id=1,
             Email = "john.doe@example.com",
-            Profile = new Profile
+            Profile = new Company
             {
                 Age = 32,
                 Company = "Acme Corp",
@@ -31,7 +31,7 @@ namespace PersonsApi.Controllers
         {
             Id=2,
             Email = "jane.smith@example.com",
-            Profile = new Profile
+            Profile = new Company
             {
                 Age = 28,
                 Company = "Globex Inc.",
@@ -42,7 +42,7 @@ namespace PersonsApi.Controllers
         {
             Id=3,
             Email = "michael.brown@example.com",
-            Profile = new Profile
+            Profile = new Company
             {
                 Age = 45,
                 Company = "Umbrella Group",
@@ -53,7 +53,7 @@ namespace PersonsApi.Controllers
         {
             Id=4,
             Email = "lucy.wilson@example.com",
-            Profile = new Profile
+            Profile = new Company
             {
                 Age = 37,
                 Company = "Stark Industries",
@@ -64,7 +64,7 @@ namespace PersonsApi.Controllers
         {
             Id=5,
             Email = "david.johnson@example.com",
-            Profile = new Profile
+            Profile = new Company
             {
                 Age = 29,
                 Company = "Wayne Enterprises",

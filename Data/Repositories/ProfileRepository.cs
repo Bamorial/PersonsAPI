@@ -10,16 +10,16 @@ public class ProfileRepository : IProfileRepository
         _connectionString = configuration.GetConnectionString("DefaultConnection");
     }
 
-    public List<Profile> GetProfiles()
+    public List<Company> GetProfiles()
     {
         return null;
     }
-    public List<Profile> GetProfilesById(int id)
+    public List<Company> GetProfilesById(int id)
     {
         return null;
     }
-    public void PostProfile(Profile profile){}
-    public void PutProfile(int id, Profile person){}
+    public void PostProfile(Company profile){}
+    public void PutProfile(int id, Company person){}
     public void DeleteProfile(int id){}
     // public List<Person> GetPersons()
     // {
